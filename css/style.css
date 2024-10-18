@@ -13,4 +13,8 @@ body {
       font-weight: 400;
       font-style: normal;
       margin: 0 auto;
+      background-image: url(../images/background-image.png);
+      background-position: top;
+      background-repeat: no-repeat;
+      background-size: cover;
 }
