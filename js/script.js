@@ -1,13 +1,21 @@
-console.log("Hello world");
+const resultElement = document.querySelector(".js-result");
+
+const welcome = () => {
+  console.log("Hello world");
+};
+
+const init = () => {
+  resultElement.innerText = (0.0).toFixed(2);
+  welcome();
+};
+
+init();
 
 let formElement = document.querySelector(".js-form");
 let fromCurrency = document.querySelector(".js-fromCurrency");
 let toCurrency = document.querySelector(".js-toCurrency");
 let amountElement = document.querySelector(".js-amount");
-let resultElement = document.querySelector(".js-result");
 let resetButton = document.querySelector(".js-resetButton");
-
-resultElement.innerText = (0.0).toFixed(2);
 
 let GBPrate = 1;
 let EURrate = 1.19;
