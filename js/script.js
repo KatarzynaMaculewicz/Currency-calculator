@@ -12,11 +12,7 @@ const init = () => {
 const onFormSubmit = () => {
   const formElement = document.querySelector(".js-form");
 
-  formElement.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    calculateResult();
-  });
+  formElement.addEventListener("submit", showResult);
 };
 
 const GBPrate = 1;
@@ -69,7 +65,13 @@ const calculateResult = () => {
   const amountElement = document.querySelector(".js-amount");
   let amount = amountElement.value;
 
-  let result = (amount / rate) * rateTo;
+  return (amount / rate) * rateTo;
+};
+
+const showResult = (event) => {
+  event.preventDefault();
+  const result = calculateResult();
+
   resultElement.innerText = result.toFixed(2);
 };
 
