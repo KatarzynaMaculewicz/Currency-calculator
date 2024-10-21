@@ -9,69 +9,78 @@ const init = () => {
   welcome();
 };
 
-init();
+const onFormSubmit = () => {
+  const formElement = document.querySelector(".js-form");
 
-let formElement = document.querySelector(".js-form");
-let fromCurrency = document.querySelector(".js-fromCurrency");
-let toCurrency = document.querySelector(".js-toCurrency");
-let amountElement = document.querySelector(".js-amount");
-let resetButton = document.querySelector(".js-resetButton");
+  formElement.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-let GBPrate = 1;
-let EURrate = 1.19;
-let USDrate = 1.3;
-let PLNrate = 5.13;
+    calculateResult();
+  });
+};
 
-formElement.addEventListener("submit", (event) => {
-  event.preventDefault();
+const GBPrate = 1;
+const EURrate = 1.19;
+const USDrate = 1.3;
+const PLNrate = 5.13;
 
-  let currency = fromCurrency.value;
-  let amount = amountElement.value;
-  let rate;
+const returnRate = () => {
+  const fromCurrency = document.querySelector(".js-fromCurrency");
+  const currency = fromCurrency.value;
 
   switch (currency) {
     case "gbp":
-      rate = GBPrate;
-      break;
+      return GBPrate;
 
     case "eur":
-      rate = EURrate;
-      break;
+      return EURrate;
 
     case "usd":
-      rate = USDrate;
-      break;
+      return USDrate;
 
     case "pln":
-      rate = PLNrate;
-      break;
+      return PLNrate;
   }
+};
 
-  let finalCurrency = toCurrency.value;
-  let rateTo;
+const returnRateTo = () => {
+  const toCurrency = document.querySelector(".js-toCurrency");
+
+  const finalCurrency = toCurrency.value;
 
   switch (finalCurrency) {
     case "gbp":
-      rateTo = GBPrate;
-      break;
+      return GBPrate;
 
     case "eur":
-      rateTo = EURrate;
-      break;
+      return EURrate;
 
     case "usd":
-      rateTo = USDrate;
-      break;
+      return USDrate;
 
     case "pln":
-      rateTo = PLNrate;
-      break;
+      return PLNrate;
   }
+};
+
+const calculateResult = () => {
+  const rate = returnRate();
+  const rateTo = returnRateTo();
+  const amountElement = document.querySelector(".js-amount");
+  let amount = amountElement.value;
 
   let result = (amount / rate) * rateTo;
   resultElement.innerText = result.toFixed(2);
-});
+};
 
-resetButton.addEventListener("click", (event) => {
-  resultElement.innerText = (0.0).toFixed(2);
-});
+const reset = () => {
+  const resetButton = document.querySelector(".js-resetButton");
+
+  resetButton.addEventListener("click", (event) => {
+    resultElement.innerText = (0.0).toFixed(2);
+  });
+};
+
+init();
+onFormSubmit();
+reset();
